@@ -3,7 +3,7 @@ from typing import Annotated
 
 from dotenv import load_dotenv
 from fastapi import Depends
-from sqlmodel import SQLModel, create_engine, Session
+from sqlmodel import create_engine, Session
 
 load_dotenv()
 
@@ -13,10 +13,6 @@ if not DATABASE_URL:
     raise ValueError("A variável DATABASE_URL não foi definida no .env")
 
 engine = create_engine(DATABASE_URL, echo=True)
-
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
-
 
 def get_session():
     with Session(engine) as session:
