@@ -1,0 +1,27 @@
+service: morta
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.13
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'prod'}
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+    JWT_SECRET_KEY: ${env:JWT_SECRET_KEY}
+
+functions:
+  api:
+    handler: morta.lambda_handler.handler
+    events:
+      - httpApi: "*"
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    slim: true
+    noDeps: false
