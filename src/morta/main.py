@@ -1,14 +1,10 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
+from morta.middlewares.process_time import register_middlewares
 from morta.routes.auth_route import router as auth_router
 
 app = FastAPI()
 
 app.include_router(auth_router)
 
-
-@app.middleware("http")
-async def add_process_time_header(request: Request, call_next):
-    response = await call_next(request)
-    print('dentro do middleware ------')
-    return response
+register_middlewares(app);

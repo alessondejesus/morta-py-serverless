@@ -21,7 +21,7 @@ def login_account(session: Session, email: str, password: str) -> TokenResponse:
     if user is None or not verify_password(password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="E-mail ou senha inválidos",
+            detail="invalid credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
