@@ -10,6 +10,7 @@ requires-python = ">=3.9"
 dependencies = [
     "alembic>=1.16.5",
     "fastapi[standard]>=0.128.8",
+    "mangum>=0.21.0",
     "psycopg[binary]>=3.2.13",
     "pwdlib[argon2]>=0.2.1",
     "pydantic[email,field]>=2.13.5",
