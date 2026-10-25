@@ -1,17 +1,22 @@
+import os
 from logging.config import fileConfig
 
+from dotenv import load_dotenv
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
 from sqlmodel import SQLModel
-from morta.database import *
 
-from morta.models.user_model import User
+from morta.models.user_model import User  # noqa: F401 registra o model no metadata
+
+load_dotenv()
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+# "%" precisa ser escapado: o configparser do alembic interpreta como interpolação
+config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"].replace("%", "%%"))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
