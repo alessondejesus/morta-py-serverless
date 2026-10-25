@@ -1,4 +1,4 @@
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from morta.models.user_model import User
 
@@ -19,3 +19,8 @@ def create_account(session: Session, name: str, email: str, password: str) -> Us
     except Exception:
         session.rollback()
         raise
+
+
+def get_by_email(session: Session, email: str) -> User | None:
+    statement = select(User).where(User.email == email)
+    return session.exec(statement).first()
