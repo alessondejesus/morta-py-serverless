@@ -1,10 +1,13 @@
 import os
+from datetime import datetime, timedelta, timezone
 
 import jwt
+from dotenv import load_dotenv
 from pwdlib import PasswordHash
 
+load_dotenv()
+
 password_hash = PasswordHash.recommended()
-from datetime import datetime, timedelta, timezone
 
 SECRET_KEY = os.environ["JWT_SECRET_KEY"]
 ALGORITHM = "HS256"
