@@ -33,4 +33,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: uv export --no-hashes --no-dev --no-emit-project --frozen > requirements.txt
+      - run: cp -r src/morta ./morta
       - run: npx serverless deploy --stage prod

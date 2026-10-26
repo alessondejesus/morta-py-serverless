@@ -4,19 +4,22 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: python3.13
+  runtime: python3.12
   region: ${opt:region, 'us-east-1'}
   stage: ${opt:stage, 'prod'}
   environment:
     DATABASE_URL: ${env:DATABASE_URL}
     JWT_SECRET_KEY: ${env:JWT_SECRET_KEY}
-    PYTHONPATH: /var/task/src
 
 functions:
   api:
     handler: morta.lambda_handler.handler
     events:
       - httpApi: "*"
+
+package:
+  patterns:
+    - "morta/**"
 
 plugins:
   - serverless-python-requirements
