@@ -5,3 +5,5 @@ __pycache__/
 requirements.txt
 node_modules/
 .serverless/
+#pipeline rule
+/morta/
