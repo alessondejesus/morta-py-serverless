@@ -10,6 +10,7 @@ provider:
   environment:
     DATABASE_URL: ${env:DATABASE_URL}
     JWT_SECRET_KEY: ${env:JWT_SECRET_KEY}
+    PYTHONPATH: /var/task/src
 
 functions:
   api:
